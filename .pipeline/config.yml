@@ -12,28 +12,12 @@
 
 ### General project setup
 #general:
-#  inferBuildTool: true
-general:
-steps:
-  mtaBuild:
-    buildTarget: 'CF'
+ # inferBuildTool: true
 
-cloudFoundryDeploy:
-    deployTool: 'mtaDeployPlugin'
-    deployType: 'standard'
-    cloudFoundry:      
-      cf_api: https://api.cf.us10-001.hana.ondemand.com
-      cf_username: ${{ secrets.CF_USERNAME }}
-      cf_password: ${{ secrets.CF_PASSWORD }}
-      cf_org: ${{ secrets.CF_ORG }}
-      cf_space: ${{ secrets.CF_SPACE }}
-      #org: '<your-organisation>'
-      #space: '<your-space>'
-      #credentialsId: 'CF_CREDENTIALSID'
 ### Step-specific configuration
 #steps:
 #  mavenExecute:
- #   dockerImage: devxci/mbtci:1.0.14
+#    dockerImage: devxci/mbtci:1.0.14
 
  # artifactPrepareVersion:
   #  versioningType: cloud_noTag
@@ -56,3 +40,13 @@ cloudFoundryDeploy:
 #        appName: 'myAppName'
 #        manifest: 'manifest.yml'
 #        credentialsId: 'myDeploymentCredentialsId'
+general:
+steps:
+  mtaBuild:
+    buildTarget: 'CF'
+  cloudFoundryDeploy:
+    cloudFoundry:
+      credentialsId: 'cfdeploy'
+      apiEndpoint: 'https://api.cf.us10-001.hana.ondemand.com'
+      org: '3fda4eb8trial'
+      space: 'dev'

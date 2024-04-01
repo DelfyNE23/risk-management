@@ -10,21 +10,22 @@
 @Library('piper-lib-os') _
 
 piperPipeline script: this
+npmExecuteScripts script: this
 
 node() {
     stage('prepare') {
         checkout scm
-        setupCommonPipelineEnvironment script:this
+        setupCommonPipelineEnvironment script: this
+        customDefaultsFromFiles: '.pipeline/config.yml'
     }
-    
-    stage('build') {
-        steps {
-            sh 'npm install' 
-            mtaBuild script: this
-        }   
+
+    stage('build') { 
+        mtaBuild script: this
+        buildTarget: 'CF'
     }
     stage('deploy') {
-        cloudFoundryDeploy script: this
+        cloudFoundryDeploy script: this,
+        deployTool:'mtaDeployPlugin'
     }
 }
 
