@@ -1,0 +1,73 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "RISKS",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "riskmanagement-Risks.csv",
+                "has_header": true,
+                "dialect": "HANA",
+                "type_config": {
+                    "delimiter": ";"
+                }
+            },
+            "import_settings": {
+                "import_columns": [
+                    "ID",
+                    "createdAt",
+                    "createdBy",
+                    "title",
+                    "owner",
+                    "prio",
+                    "descr",
+                    "miti_ID",
+                    "impact"
+                ],
+                "include_filter": []
+            },
+            "column_mappings": {
+                "ID": 1,
+                "createdAt": 2,
+                "createdBy": 3,
+                "title": 4,
+                "owner": 5,
+                "prio": 6,
+                "descr": 7,
+                "miti_ID": 8,
+                "impact": 9
+            }
+        },
+        {
+            "target_table": "MITIGATIONS",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "riskmanagement-Mitigations.csv",
+                "has_header": true,
+                "dialect": "HANA",
+                "type_config": {
+                    "delimiter": ";"
+                }
+            },
+            "import_settings": {
+                "import_columns": [
+                    "ID",
+                    "createdAt",
+                    "createdBy",
+                    "descr",
+                    "owner",
+                    "timeline"
+                ],
+                "include_filter": []
+            },
+            "column_mappings": {
+                "ID": 1,
+                "createdAt": 2,
+                "createdBy": 3,
+                "descr": 4,
+                "owner": 5,
+                "timeline": 6
+            }
+        },
+    ]
+}

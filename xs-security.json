@@ -1,0 +1,32 @@
+{
+  "xsappname": "risk-management",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA for risk-management user",
+      "scope-references": [
+        "uaa.user"
+      ]
+    }
+
+  ],
+  "oauth2-configuration": 
+  {
+    "credential-types": [
+      "binding-secret", "x509"
+    ],
+    "redirect-uris": [
+      "https://*.hana.ondemand.com/**",
+      "http://localhost:5000/login/callback"
+    ]
+  }
+}
