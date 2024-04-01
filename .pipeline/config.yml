@@ -11,21 +11,37 @@
 
 
 ### General project setup
+#general:
+#  inferBuildTool: true
 general:
-  inferBuildTool: true
-
-### Step-specific configuration
 steps:
-  mavenExecute:
-    dockerImage: devxci/mbtci:1.0.14
+  mtaBuild:
+    buildTarget: 'CF'
 
-  artifactPrepareVersion:
-    versioningType: cloud_noTag
+cloudFoundryDeploy:
+    deployTool: 'mtaDeployPlugin'
+    deployType: 'standard'
+    cloudFoundry:      
+      cf_api: https://api.cf.us10-001.hana.ondemand.com
+      cf_username: ${{ secrets.CF_USERNAME }}
+      cf_password: ${{ secrets.CF_PASSWORD }}
+      cf_org: ${{ secrets.CF_ORG }}
+      cf_space: ${{ secrets.CF_SPACE }}
+      #org: '<your-organisation>'
+      #space: '<your-space>'
+      #credentialsId: 'CF_CREDENTIALSID'
+### Step-specific configuration
+#steps:
+#  mavenExecute:
+ #   dockerImage: devxci/mbtci:1.0.14
+
+ # artifactPrepareVersion:
+  #  versioningType: cloud_noTag
 
 ### Stage-specific configuration
-stages:
-  'Confirm':
-    manualConfirmation: false
+#stages:
+#  'Confirm':
+#    manualConfirmation: false
 
 #  Integration:
 #    credentials:
