@@ -16,8 +16,12 @@ node() {
         checkout scm
         setupCommonPipelineEnvironment script:this
     }
+    
     stage('build') {
-        mtaBuild script: this
+        steps {
+            sh 'npm install' 
+            mtaBuild script: this
+        }   
     }
     stage('deploy') {
         cloudFoundryDeploy script: this
