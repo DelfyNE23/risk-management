@@ -8,6 +8,7 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
+        - npm ci    #(clean-install) importante para el build automatico de ci/cd
         - npx cds build --production
 modules:
   - name: risk-management-srv
