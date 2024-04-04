@@ -37,7 +37,6 @@ jobs:
       with:	
         name: mta
         path: ./mta_archives/risk-management_1.0.0.mtar
-        
   deploy:
      name: deploy project
      runs-on: ubuntu-latest
