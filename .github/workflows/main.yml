@@ -11,36 +11,35 @@ on:
 jobs:
   build:
     name: build-project
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #our job will run on the latest stable version of Ubuntu Linux 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4  #This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
     - name: Use Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v4 #This action provides Nodejs functionality
       with:
         node-version: 20
-    - name: Install MTA Build Tool
+    - run: npm ci #Clean Install (ci)
+
+    - name: Install MTA Build Tool 
       run: npm install -g mbt
     # Do not generate package-lock.json
     # See https://blogs.sap.com/2020/07/07/escaping-eintegrity-hell/
-    - name:   Install Packages ci
-      run:    npm install ci
+     
     - name:   Install Packages cds
       run:    npm install @sap/cds
-    #- name:   Building cds
-    #  run:   cds build
-    #- name: Disable package-lock.json
-    #  run: npm config set package-lock true
+    
     - name: Build MTA
-      run: mbt build -p cf
+      run: mbt build -p cf   # -p cf --> (platform cloud foundry)
+
     - name: Upload Artifact
-      uses: actions/upload-artifact@v4	
+      uses: actions/upload-artifact@v4	#carga el artefacto mta en la ruta ...
       with:	
         name: mta
         path: ./mta_archives/risk-management_1.0.0.mtar
   deploy:
      name: deploy project
-     runs-on: ubuntu-latest
-     needs: build
+     runs-on: ubuntu-latest #our job will run on the latest stable version of Ubuntu Linux 
+     needs: build           #utilizaremmos el artefacto de del job anterior
      steps:
        - name: Download Artifact
          uses: actions/download-artifact@v4
@@ -50,7 +49,7 @@ jobs:
        - name: Test artifact downloaded
          run: ls -R 
        - name: Deploy to Cloud Foundry
-         uses: guerric-p/cf-cli-action@master
+         uses: guerric-p/cf-cli-action@master #Deploy to CF and manage your apps and services using the CF CLI
          with:
            cf_api: https://api.cf.us10-001.hana.ondemand.com
            cf_username: ${{ secrets.CF_USERNAME }}
