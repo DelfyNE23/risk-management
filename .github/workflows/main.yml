@@ -46,8 +46,8 @@ jobs:
          with:
            name: mta
            #path: ./  
-       - name: Test artifact downloaded
-         run: ls -R 
+       - name: Test artifact downloaded #Display structure of downloaded files
+         run: ls -R     
        - name: Deploy to Cloud Foundry
          uses: guerric-p/cf-cli-action@master #Deploy to CF and manage your apps and services using the CF CLI
          with:
