@@ -10,7 +10,8 @@
 @Library('piper-lib-os') _
 
 piperPipeline script: this
-npmExecuteScripts script: this
+
+/*npmExecuteScripts script: this
 
 node() {
     stage('prepare') {
@@ -27,5 +28,5 @@ node() {
         cloudFoundryDeploy script: this,
         deployTool:'mtaDeployPlugin'
     }
-}
+}*/
 
