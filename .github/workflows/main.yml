@@ -9,6 +9,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
   build:
     name: build-project
     runs-on: ubuntu-latest #our job will run on the latest stable version of Ubuntu Linux 
