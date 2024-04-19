@@ -49,8 +49,8 @@ jobs:
            #path: ./  
        - name: Test artifact downloaded #Display structure of downloaded files
          run: ls -R     
-       - name: Deploy to Cloud Foundry
-         uses: guerric-p/cf-cli-action@master #Deploy to CF and manage your apps and services using the CF CLI
+       - name: Deploy to Cloud Foundry   #Deploy to CF and manage your apps and services using the CF CLI
+         uses: guerric-p/cf-cli-action@master 
          with:
            cf_api: https://api.cf.us10-001.hana.ondemand.com
            cf_username: ${{ secrets.CF_USERNAME }}
